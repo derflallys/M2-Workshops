@@ -4,9 +4,14 @@ module.exports = function(app,InMemoryWorkshop,ejs){
         const name = req.body.name
         const description = req.body.description
         InMemoryWorkshop.addWorkshop(name, description).then(() => {
-            res.render('index')
+            InMemoryWorkshop.getWorkshopList()
+                .then(workshops => {
+                    res.render("index", {
+                        workshops: workshops
+                    })
+                })
         })
-            .catch(e =>ejs.send(e.message))
+            .catch(e =>res.send(e.message))
     });
 
     app.post('/remove-workshop', function (req, res) {

@@ -8,6 +8,9 @@ const ejs = require('ejs')
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, '../front', '/ejs'));
 app.use(express.static(path.join(__dirname , '../front', 'css')));
+var bodyParser = require('body-parser')
+
+app.use(bodyParser.urlencoded({ extended: false }))
 
 require('./routes')(app,InMemoryWorkshop);
 
