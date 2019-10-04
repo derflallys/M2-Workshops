@@ -8,6 +8,7 @@ function getWorkshopList() {
 }
 
 function getWorkshopByName(name) {
+    console.log(inMemoryWorkshop);
     return new Promise((resolve, reject) => {
         if (!name) {
             reject(new Error("name parameter is required"))
